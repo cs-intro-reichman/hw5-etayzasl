@@ -62,10 +62,6 @@ public class Scrabble {
 	public static int wordScore(String word) {
 		int score = 0;
 		for (int i = 0; i < word.length(); i++) {
-			int chIndex = word.charAt(i) - 'a';
-			System.out.print("char " + word.charAt(i) + "  ");
-			System.out.print("index " + chIndex + "  ");
-			System.out.println("score " + SCRABBLE_LETTER_VALUES[chIndex]);
 			score += SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
 		}
 		score = score * word.length();
