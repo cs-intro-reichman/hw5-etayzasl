@@ -93,11 +93,16 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-        String result = "";
-        for (int i = 0; i < str1.length(); i++) {
-            if (countChar(str2, str1.charAt(i)) == 0) result += str1.charAt(i);
+        for (int i = 0; i < str2.length(); i++) {
+            char ch = str2.charAt(i);
+            for (int j = 0; j < str1.length(); j++) {
+                if (str1.charAt(j) == ch) {
+                    str1 = str1.substring(0, j) + str1.substring(j + 1);
+                    break;
+                }
+            }
         }
-        return result;
+        return str1;
     }
 
     /**
