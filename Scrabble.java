@@ -66,7 +66,7 @@ public class Scrabble {
 		}
 		score = score * word.length();
 		if (word.length() == HAND_SIZE) {
-			score = 50;
+			score += 50;
 		}
 		if (word.contains("runi")) {
 			score += 1000;
