@@ -61,14 +61,19 @@ public class Scrabble {
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
 		int score = 0;
+		for (int i = 0; i < word.length(); i++) {
+			int chIndex = word.charAt(i) - 'a';
+			System.out.print("char " + word.charAt(i) + "  ");
+			System.out.print("index " + chIndex + "  ");
+			System.out.println("score " + SCRABBLE_LETTER_VALUES[chIndex]);
+			score += SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
+		}
+		score = score * word.length();
 		if (word.length() == HAND_SIZE) {
 			score = 50;
 		}
 		if (word.contains("runi")) {
 			score += 1000;
-		}
-		for (int i = 0; i < word.length(); i++) {
-			score += SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
 		}
 		return score;
 	}
@@ -146,9 +151,9 @@ public class Scrabble {
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		// testBuildingTheDictionary();  
-		////testScrabbleScore();    
+		testScrabbleScore();    
 		////testCreateHands();  
-		////testPlayHands();
+		// testPlayHands();
 		////playGame();
 	}
 
@@ -162,7 +167,7 @@ public class Scrabble {
 	}
 	
 	public static void testScrabbleScore() {
-		System.out.println(wordScore("bee"));	
+		System.out.println(wordScore("cat"));	
 		System.out.println(wordScore("babe"));
 		System.out.println(wordScore("friendship"));
 		System.out.println(wordScore("running"));
@@ -175,7 +180,7 @@ public class Scrabble {
 	}
 	public static void testPlayHands() {
 		init();
-		//playHand("ocostrza");
+		playHand("ocostrza");
 		//playHand("arbffip");
 		//playHand("aretiin");
 	}
