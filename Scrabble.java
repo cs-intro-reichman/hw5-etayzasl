@@ -89,28 +89,43 @@ public class Scrabble {
     // 2. The user gets the Scrabble points of the entered word.
     // 3. The user is prompted to enter another word, or '.' to end the hand. 
 	public static void playHand(String hand) {
-		int n = hand.length();
 		int score = 0;
-		// Declares the variable in to refer to an object of type In, and initializes it to represent
-		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
+		
+		// Continue until there are no letters left or user enters '.'
 		while (hand.length() > 0) {
-			// Reads the next "token" from the keyboard. A token is defined as a string of 
-			// non-whitespace characters. Whitespace is either space characters, or  
-			// end-of-line characters.
+			// Print the current hand
+			System.out.print("Current Hand: ");
+			for (int i = 0; i < hand.length(); i++) {
+				System.out.print(hand.charAt(i) + (i < hand.length() - 1 ? " " : ""));
+			}
+			System.out.println();
+			
+			// Prompt for input
+			System.out.println("Enter a word, or '.' to finish playing this hand:");
+			
 			String input = in.readString();
+			
 			if (input.equals(".")) {
+				// End of hand
 				break;
 			} else {
-				if (isWordInDictionary(input)) {
-					score += wordScore(input);
+				if (isWordInDictionary(input) && MyString.subsetOf(input, hand)) {
+					int wordPoints = wordScore(input);
+					score += wordPoints;
+					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
 					hand = MyString.remove(hand, input);
 				} else {
-					System.out.println("That is not a valid word. Please choose another word.");
+					// Invalid word message must match the expected output exactly
+					System.out.println("Invalid word. Try again.");
 				}
 			}
 		}
+		
+		// After the loop ends (either by no more letters or user inputting '.')
+		System.out.println("End of hand. Total score: " + score + " points");
 	}
+	
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
@@ -140,9 +155,9 @@ public class Scrabble {
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		// testBuildingTheDictionary();  
-		testScrabbleScore();    
+		// testScrabbleScore();    
 		////testCreateHands();  
-		// testPlayHands();
+		testPlayHands();
 		////playGame();
 	}
 
@@ -169,7 +184,7 @@ public class Scrabble {
 	}
 	public static void testPlayHands() {
 		init();
-		playHand("ocostrza");
+		playHand("aretiin");
 		//playHand("arbffip");
 		//playHand("aretiin");
 	}
