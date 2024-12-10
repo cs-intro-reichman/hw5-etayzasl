@@ -115,10 +115,13 @@ public class Scrabble {
 					score += wordPoints;
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
 					hand = MyString.remove(hand, input);
+				
+					// Add a blank line here if the expected output shows one
+					System.out.println(); 
 				} else {
-					// Invalid word message must match the expected output exactly
 					System.out.println("Invalid word. Try again.");
 				}
+				
 			}
 		}
 		
